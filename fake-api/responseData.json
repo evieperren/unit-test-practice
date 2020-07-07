@@ -1,0 +1,16 @@
+{
+    "name": "Evie",
+    "bio": "Bio here",
+    "skills": "['skill one, skill two']",
+    "contactDetails": {
+        "email": "evie.perren@simplyhealth.co.uk",
+        "telephone": "0123456789"
+    },
+    "waysOfWorking": {
+        "email": true,
+        "faceToFace": true,
+        "teams": true,
+        "phone": true
+    },
+    "availablility": true
+}

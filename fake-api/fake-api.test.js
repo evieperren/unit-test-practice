@@ -1,6 +1,8 @@
-jest.mock('./fake-api')
-const getAllMentors = require('./fake-api').getAllMentors
-const getOneBySkill = require('./fake-api').getOneBySkill
+jest.mock('./getAllMentors')
+jest.mock('./getOneBySkill')
+const getAllMentors = require('./getAllMentors')
+const getOneBySkill = require('./getOneBySkill')
+const responseData = require('./responseData.json')
 
 describe("Fake API test suite", () => {
     beforeEach(() => {
@@ -11,42 +13,15 @@ describe("Fake API test suite", () => {
     it('should be defined', () => {
         expect(getAllMentors).toBeDefined()
     })
-    it('should return an array of 2 mentors', () => {
+    it('should return an array of 3 mentors', () => {
         getAllMentors.mockImplementation(() => {
-            return [{
-                name: 'Evie',
-                bio: 'Bio here',
-                skills: ['skill one, skill two'],
-                contactDetails: {
-                    email: 'evie.perren@simplyhealth.co.uk',
-                    telephone: '0123456789'
-                },
-                waysOfWorking: {
-                    email: true,
-                    faceToFace: true,
-                    teams: true,
-                    phone: true
-                },
-                availablility: true
-            }, 
-            {
-                name: 'Evie',
-                bio: 'Bio here',
-                skills: ['skill one, skill two'],
-                contactDetails: {
-                    email: 'evie.perren@simplyhealth.co.uk',
-                    telephone: '0123456789'
-                },
-                waysOfWorking: {
-                    email: true,
-                    faceToFace: true,
-                    teams: true,
-                    phone: true
-                },
-                availablility: true
-            }]
+            return [
+                responseData, 
+                responseData,
+                responseData
+            ]
         })
-        expect(getAllMentors()).toHaveLength(2)
+        expect(getAllMentors()).toHaveLength(3)
     })
     xit('should it should throw an error when it does not find any mentors to return', () => {
         getAllMentors.mockImplementation(() => {
@@ -57,7 +32,13 @@ describe("Fake API test suite", () => {
 
     describe('testing API functionality', () => {
         it('should be defined', () => {
-            expect(getOneBySkill()).toBeDefined()
+            expect(getOneBySkill).toBeDefined()
+        })
+        it('should return a mentor with a matching skill', () => {
+            getOneBySkill.mockImplementation(() => { 
+                return responseData
+            })
+            expect(getOneBySkill('skill one')).toEqual(responseData)
         })
     })
 })
