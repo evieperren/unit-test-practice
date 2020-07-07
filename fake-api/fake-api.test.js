@@ -1,9 +1,11 @@
 jest.mock('./fake-api')
-const getAllMentors = require('./fake-api')
+const { getAllMentors, getOneBySkill } = require('./fake-api')
 
 describe("Fake API test suite", () => {
     beforeEach(() => {
-        
+        getAllMentors.mockImplementation(() => {
+            return []
+        })
     })
     it('should be defined', () => {
         expect(getAllMentors).toBeDefined()
@@ -45,10 +47,16 @@ describe("Fake API test suite", () => {
         })
         expect(getAllMentors()).toHaveLength(2)
     })
-    it('should it should throw an error when it does not find any mentors to return', () => {
+    xit('should it should throw an error when it does not find any mentors to return', () => {
         getAllMentors.mockImplementation(() => {
             return []
         })
         expect(getAllMentors()).toThrow()
     } )
+
+    describe('testing API functionality', () => {
+        it('should be defined', () => {
+            expect(getOneBySkill()).toBeDefined()
+        })
+    })
 })
