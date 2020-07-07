@@ -1,5 +1,6 @@
 jest.mock('./fake-api')
-const { getAllMentors, getOneBySkill } = require('./fake-api')
+const getAllMentors = require('./fake-api').getAllMentors
+const getOneBySkill = require('./fake-api').getOneBySkill
 
 describe("Fake API test suite", () => {
     beforeEach(() => {

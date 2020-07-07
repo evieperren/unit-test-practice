@@ -11,7 +11,6 @@ async function getOneBySkill (){
         console.log(error)
     }
 }
-module.exports = {
-    getAllMentors,
-    getOneBySkill
-}
+
+module.exports.getAllMentors = getAllMentors
+module.exports.getOneBySkill = getOneBySkill
